@@ -5,6 +5,8 @@ import datetime
 from .models import *
 from .utils import cookieCart,cartData,guestOrder
 
+from django.views.generic.detail import DetailView
+
 
 def store(request):
 	data = cartData(request)
@@ -106,3 +108,12 @@ def processOrder(request):
 			print("user not logged in")
 
 	return JsonResponse('Payment submitted..', safe=False)
+
+class ProductView (DetailView):
+    model = Product
+    context_object_name = 'product'
+    template_name = 'store/product.html'
+
+
+
+
